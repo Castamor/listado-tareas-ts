@@ -130,7 +130,7 @@ input[type='checkbox'] {display: none;}
 }
 
 .input textarea {
-    padding-left: 2rem;
+    padding-left: 1.5rem;
     
     height: auto;
     resize: none;
@@ -138,11 +138,11 @@ input[type='checkbox'] {display: none;}
 
     border: none;
     outline: none;
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--fuente);
 }
 
 .input textarea::placeholder {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--fuente);
 }
 
 .plus {
@@ -185,21 +185,6 @@ input[type='checkbox'] {display: none;}
 
 .parteAbajo-titulo {
     margin: 3rem 0 1rem;
-}
-
-.parteAbajo-boton {
-    position: absolute;
-    background-color: transparent;
-    opacity: .5;
-    font-size: 1.7rem;
-    padding: .2rem;
-    top: 63%;
-    right: -2.05rem;
-    transform: translate(-50%,-50%);
-}
-
-#input-orden:checked + .parteAbajo-boton {
-    opacity: 1;
 }
 
 .parteAbajo-contenido {

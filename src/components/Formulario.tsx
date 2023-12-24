@@ -1,20 +1,41 @@
 import React, { type FormEvent, useState } from 'react'
 import { BiPlus } from 'react-icons/bi'
+import { useStorage } from '../store'
+import { type Tarea } from '../types'
+import { generarId } from '../helpers'
+import { VACIO } from '../constants'
 
 const Formulario = () => {
     const [input, setInput] = useState('')
     const [error, setError] = useState(false)
 
+    const agregarTarea = useStorage(state => state.agregarTarea)
+
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if (input === '') {
+        if (input === VACIO) {
             setError(true)
             setTimeout(() => { setError(false) }, 2500)
             return
         }
 
-        document.querySelector('form')?.reset()
+        const nuevaTarea: Tarea = {
+            id: generarId(),
+            contenido: input,
+            completado: false,
+            creado: Date.now()
+        }
+
+        agregarTarea(nuevaTarea)
+
+        // Ajustar alto del text-area y borrar su contenido
+        const textarea = document.querySelector('textarea')
+        if (textarea !== null) {
+            textarea.style.height = 'auto'
+            textarea.value = VACIO
+            setInput(VACIO)
+        }
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
