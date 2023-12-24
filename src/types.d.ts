@@ -9,3 +9,5 @@ export type TareaId = string
 export type TareaContenido = string
 export type TareaCompletado = boolean
 export type TareaCreado = number
+
+export type VACIO = ''

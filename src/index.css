@@ -50,7 +50,7 @@ button, input {
 input[type='checkbox'] {display: none;}
 
 .contenedor {
-    width: min(90%, 55rem);
+    width: min(95%, 55rem);
     margin: 0 auto;
 }
 
@@ -118,6 +118,7 @@ input[type='checkbox'] {display: none;}
     min-width: 4rem;
     color: var(--primario);
     background-color: transparent;
+    outline: none;
 
     display: grid;
     place-items: center;
@@ -128,8 +129,20 @@ input[type='checkbox'] {display: none;}
     position: relative;
 }
 
-.input input {
+.input textarea {
     padding-left: 2rem;
+    
+    height: auto;
+    resize: none;
+    overflow: hidden;
+
+    border: none;
+    outline: none;
+    font-family: 'Outfit', sans-serif;
+}
+
+.input textarea::placeholder {
+    font-family: 'Outfit', sans-serif;
 }
 
 .plus {
