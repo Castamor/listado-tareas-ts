@@ -1,66 +1,93 @@
-import React, { type FormEvent, useState } from 'react'
-import { BiPlus } from 'react-icons/bi'
+import React, { type FormEvent, useState, type KeyboardEvent } from 'react'
+import { BiPlus, BiCheck } from 'react-icons/bi'
 import { useStorage } from '../store'
 import { type Tarea } from '../types'
-import { generarId } from '../helpers'
+import { ajustarTextArea, generarId } from '../helpers'
 import { VACIO } from '../constants'
 
 const Formulario = () => {
-    const [input, setInput] = useState('')
     const [error, setError] = useState(false)
 
     const agregarTarea = useStorage(state => state.agregarTarea)
+    const editarTarea = useStorage(state => state.editarTarea)
+
+    const idTareaEditar = useStorage(state => state.idTareaEditar)
+    const setIdTareaEditar = useStorage(state => state.setIdTareaEditar)
+    const contenidoInput = useStorage(state => state.contenidoInput)
+    const setContenidoInput = useStorage(state => state.setContenidoInput)
+    const editando = useStorage(state => state.editando)
+    const setEditando = useStorage(state => state.setEditando)
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if (input === VACIO) {
+        if (contenidoInput === VACIO) {
             setError(true)
             setTimeout(() => { setError(false) }, 2500)
             return
         }
 
+        if (editando) {
+            editarTarea(idTareaEditar, contenidoInput)
+            setIdTareaEditar('')
+            setEditando(false)
+            setContenidoInput(VACIO)
+            ajustarTextArea(VACIO)
+            return
+        }
+
         const nuevaTarea: Tarea = {
             id: generarId(),
-            contenido: input,
+            contenido: contenidoInput,
             completado: false,
             creado: Date.now()
         }
 
         agregarTarea(nuevaTarea)
-
-        // Ajustar alto del text-area y borrar su contenido
-        const textarea = document.querySelector('textarea')
-        if (textarea !== null) {
-            textarea.style.height = 'auto'
-            textarea.value = VACIO
-            setInput(VACIO)
-        }
+        setContenidoInput(VACIO)
+        ajustarTextArea(VACIO)
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         e.preventDefault()
 
-        const input = e.target
-        setInput(input.value.trim())
+        const txtInput = e.target.value
 
-        // Ajustar alto del text-area automaticamente
-        input.style.height = 'auto'
-        input.style.height = input.scrollHeight + 'px'
+        setContenidoInput(txtInput)
+        ajustarTextArea(txtInput)
+    }
+
+    const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.ctrlKey && e.key === 'Enter') { // Verificar que las teclas clickeadas son Ctrl + Enter
+            const formulario = document.querySelector('form')
+            if (formulario !== null) {
+                formulario.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+            }
+        }
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="titulo" className='label-input negrita'>¿Qué tareas tienes hoy?</label>
+            <label htmlFor="titulo" className='label-input negrita'>
+                {editando ? 'Cambiar contenido de la tarea...' : '¿Qué tareas tienes hoy?'}
+            </label>
             <div className="plantilla input">
                 <textarea
                     id="titulo"
                     className="fondo-tarea noSeleccionar bordeOverflow inputFormulario"
                     placeholder="Titulo de la tarea"
                     onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    value={contenidoInput}
                     rows={1}
                 />
-                <button type="submit" title={'Agregar Tarea'} className="boton plus hover apuntar"><BiPlus/></button>
+                <button
+                    type="submit"
+                    title={editando ? 'Actualizar Tarea' : 'Agregar Tarea'}
+                    className="boton plus hover apuntar"
+                >
+                    {editando ? <BiCheck /> : <BiPlus/>}
+                </button>
             </div>
             {error && <span className="error">(Campo Obligatorio)</span>}
         </form>

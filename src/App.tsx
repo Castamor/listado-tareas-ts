@@ -18,7 +18,13 @@ function App () {
                 {hayTareas && <Tareas />}
             </div>
 
-            <button className='' type='button' onClick={borrarTareas}>Borrar todas las tareas</button>
+            <button className='' type='button' onClick={() => {
+                const ta = document.querySelector('textarea')
+                if (ta !== null) {
+                    ta.value = ''
+                }
+                borrarTareas()
+            }}>Borrar todas las tareas</button>
         </>
     )
 }

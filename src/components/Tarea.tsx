@@ -2,14 +2,18 @@ import { useEffect, useState } from 'react'
 import { BiCheckbox, BiCheck, BiTrashAlt, BiPencil } from 'react-icons/bi'
 import { type Tarea as TareaType } from '../types'
 import { useStorage } from '../store'
+import { ajustarTextArea } from '../helpers'
 
 type Props = TareaType
 
-const Tarea = ({ id, contenido, completado, creado }: Props) => {
+const Tarea = ({ id, contenido, completado }: Props) => {
     const [tareaCompletada, setTareaCompletada] = useState(completado)
 
     const completarTarea = useStorage(state => state.completarTarea)
     const eliminarTarea = useStorage(state => state.eliminarTarea)
+    const setIdTareaEditar = useStorage(state => state.setIdTareaEditar)
+    const setContenidoInput = useStorage(state => state.setContenidoInput)
+    const setEditando = useStorage(state => state.setEditando)
 
     useEffect(() => {
         completarTarea(id, tareaCompletada)
@@ -17,8 +21,13 @@ const Tarea = ({ id, contenido, completado, creado }: Props) => {
 
     // Formatear texto de las tareas
     const parrafo = document.querySelector(`#${id}`)
-    if (parrafo !== null) {
-        parrafo.innerHTML = contenido.replace(/\n/g, '<br>')
+    if (parrafo !== null) { parrafo.innerHTML = contenido.replace(/\n/g, '<br>') }
+
+    const handleEditar = () => {
+        setEditando(true)
+        setIdTareaEditar(id)
+        setContenidoInput(contenido)
+        ajustarTextArea(contenido)
     }
 
     return (
@@ -31,6 +40,13 @@ const Tarea = ({ id, contenido, completado, creado }: Props) => {
             > {tareaCompletada ? <BiCheck/> : <BiCheckbox/> } </button>
 
             <p id={id} className={`fondo-tarea titulo ${tareaCompletada ? 'subdrayado' : ''}`}></p>
+
+            <button
+                type="button"
+                className='boton editar apuntar'
+                title='Editar tarea'
+                onClick={handleEditar}
+            > <BiPencil/> </button>
 
             <button
                 type='button'

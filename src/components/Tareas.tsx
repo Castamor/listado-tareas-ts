@@ -3,7 +3,6 @@ import Tarea from './Tarea'
 
 const Tareas = () => {
     const tareas = useStorage(state => state.tareas)
-    console.log(tareas)
 
     return (
         <>
