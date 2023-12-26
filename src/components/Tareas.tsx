@@ -1,6 +1,8 @@
+import { SELECTS } from '../data'
 import { useStorage } from '../store'
+import Boton from './Selects/Boton'
+import Opcion from './Selects/Opcion'
 import Tarea from './Tarea'
-import { BiFilterAlt, BiSort } from 'react-icons/bi'
 
 const Tareas = () => {
     const tareas = useStorage(state => state.tareas)
@@ -10,19 +12,29 @@ const Tareas = () => {
             <header>
                 <p className='subtitulo'>Tus tareas</p>
 
-                <div className='botones'>
-                    <button className='btn'>
-                        <span><BiFilterAlt/></span>
-                        Filtrar
-                    </button>
-                    <button className='btn'>
-                        <span><BiSort/></span>
-                        Ordenar
-                    </button>
+                <div className='selects'>
+                    {
+                        SELECTS.map(select => (
+                            <div key={select.titulo} className='select'>
+                                <Boton titulo={select.titulo} Icono={select.Icono}/>
+                                <ul className={`select-opciones ${select.titulo}`}>
+                                    {
+                                        select.opciones.map(opcion => (
+                                            <Opcion
+                                                key={opcion.titulo}
+                                                metodo={select.titulo}
+                                                opcionType={{ titulo: opcion.titulo, Icono: opcion.Icono }}
+                                            />
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        ))
+                    }
                 </div>
             </header>
 
-            <ul>
+            <ul className='tareas'>
                 {tareas.map(tarea => (
                     <Tarea
                         key={tarea.id}
