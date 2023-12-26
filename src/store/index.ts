@@ -27,7 +27,17 @@ export const useStorage = create<StorageTipos>()(persist(
             set((state) => ({ esTemaOscuro: !state.esTemaOscuro }))
         },
         contenidoInput: '',
-        setContenidoInput: (nuevoContenido) => { set({ contenidoInput: nuevoContenido }) },
+        setContenidoInput: (nuevoContenido) => {
+            const textarea = document.querySelector('textarea')
+            if (textarea !== null) {
+                textarea.value = nuevoContenido
+                textarea.textContent = nuevoContenido
+                textarea.style.height = 'auto'
+                textarea.style.height = textarea.scrollHeight + 'px'
+            }
+
+            set({ contenidoInput: nuevoContenido })
+        },
         editando: false,
         setEditando: (valor) => { set({ editando: valor }) },
         idTareaEditar: '',

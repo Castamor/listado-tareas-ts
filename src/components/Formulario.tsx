@@ -1,8 +1,8 @@
 import React, { type FormEvent, useState, type KeyboardEvent } from 'react'
-import { BiPlus, BiCheck } from 'react-icons/bi'
+import { BiPlus, BiCheck, BiInfoCircle } from 'react-icons/bi'
 import { useStorage } from '../store'
 import { type Tarea } from '../types'
-import { ajustarTextArea, generarId } from '../helpers'
+import { generarId } from '../helpers'
 import { VACIO } from '../constants'
 
 const Formulario = () => {
@@ -28,24 +28,22 @@ const Formulario = () => {
         }
 
         if (editando) {
-            editarTarea(idTareaEditar, contenidoInput)
+            editarTarea(idTareaEditar, contenidoInput.trim())
             setIdTareaEditar('')
             setEditando(false)
             setContenidoInput(VACIO)
-            ajustarTextArea(VACIO)
             return
         }
 
         const nuevaTarea: Tarea = {
             id: generarId(),
-            contenido: contenidoInput,
+            contenido: contenidoInput.trim(),
             completado: false,
             creado: Date.now()
         }
 
         agregarTarea(nuevaTarea)
         setContenidoInput(VACIO)
-        ajustarTextArea(VACIO)
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -54,7 +52,6 @@ const Formulario = () => {
         const txtInput = e.target.value
 
         setContenidoInput(txtInput)
-        ajustarTextArea(txtInput)
     }
 
     const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -68,13 +65,13 @@ const Formulario = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="titulo" className='label-input negrita'>
+            <label htmlFor="titulo" className='subtitulo'>
                 {editando ? 'Cambiar contenido de la tarea...' : '¿Qué tareas tienes hoy?'}
             </label>
             <div className="plantilla input">
                 <textarea
                     id="titulo"
-                    className="fondo-tarea noSeleccionar bordeOverflow inputFormulario"
+                    className="tarea"
                     placeholder="Titulo de la tarea"
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
