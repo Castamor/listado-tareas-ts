@@ -119,6 +119,14 @@ input[type='checkbox'] {display: none;}
     font-weight: 500;
 }
 
+.subtitulo span {
+    cursor: help;
+    font-size: 1.7rem;
+    margin-left: .25rem;
+    margin-bottom: -.25rem;
+    color: var(--textoSecundario);
+}
+
 .input {
     margin-top: 1rem;
     position: relative;

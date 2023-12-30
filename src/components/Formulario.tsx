@@ -66,8 +66,9 @@ const Formulario = () => {
     return (
         <form onSubmit={handleSubmit}>
 
-            <label htmlFor="titulo" className='subtitulo'>
+            <label htmlFor="titulo" className='subtitulo flex'>
                 {editando ? 'Cambiar contenido de la tarea...' : '¿Qué tareas tienes hoy?'}
+                <span title='Si utilizas teclado puedes presionar el atajo <Ctrl + Enter> para agregar la tarea directamente'><BiInfoCircle/></span>
             </label>
             <div className="plantilla input">
                 <textarea
