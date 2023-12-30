@@ -7,7 +7,7 @@ export const METODOS = {
     filtrar: {
         string: 'Filtrar',
         verTodos: 'Todos',
-        completados: 'Completados',
+        completados: 'Completadas',
         pendientes: 'Pendientes'
     },
     ordenar: {

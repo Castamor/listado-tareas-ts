@@ -224,6 +224,13 @@ input[type='checkbox'] {display: none;}
     gap: 1rem;
 }
 
+.contenido .info {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 2.5rem;
+    color: var(--textoSecundario);
+}
+
 .selects {
     display: flex;
     gap: .5rem;

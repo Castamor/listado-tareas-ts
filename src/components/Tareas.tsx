@@ -48,15 +48,17 @@ const Tareas = () => {
                 </div>
             </header>
 
-            <ul className='tareas'>
-                {tareasVisibles.map(tarea => (
-                    <Tarea
-                        key={tarea.id}
-                        setTareasVisibles={setTareasVisibles}
-                        tarea={tarea}
-                    />
-                ))}
-            </ul>
+            {tareasVisibles.length === 0
+                ? (<p className='info'>( No hay ninguna tarea <span>{filtro.slice(0, -1).toLowerCase()}</span> )</p>)
+                : (<ul className='tareas'>
+                    {tareasVisibles.map(tarea => (
+                        <Tarea
+                            key={tarea.id}
+                            setTareasVisibles={setTareasVisibles}
+                            tarea={tarea}
+                        />
+                    ))}
+                </ul>)}
         </section>
     )
 }
