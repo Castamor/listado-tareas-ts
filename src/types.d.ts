@@ -12,7 +12,7 @@ export type TareaContenido = string
 export type TareaCompletado = boolean
 export type TareaCreado = number
 
-export type VACIO = ''
+export type Vacio = ''
 
 interface Opcion {
     titulo: string
@@ -23,4 +23,11 @@ interface Selector {
     titulo: string
     Icono: IconType
     opciones: Opcion[]
+}
+
+interface DatosType {
+    filtro: string
+    orden: string
+    tareas: Tarea[]
+    setTareasVisibles: React.Dispatch<React.SetStateAction<TareaType[]>>
 }

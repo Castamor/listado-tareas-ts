@@ -1,11 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BiCheckbox, BiCheck, BiTrashAlt, BiPencil } from 'react-icons/bi'
-import { type Tarea as TareaType } from '../types'
+import { type DatosType, type Tarea as TareaType } from '../types'
 import { useStorage } from '../store'
+import { filtrarTareas } from '../helpers'
 
-const Tarea = ({ id, contenido, completado }: TareaType) => {
+interface Props {
+    setTareasVisibles: React.Dispatch<React.SetStateAction<TareaType[]>>
+    tarea: TareaType
+}
+
+const Tarea = ({ tarea, setTareasVisibles }: Props) => {
+    const { id, contenido, completado } = tarea
+
     const [tareaCompletada, setTareaCompletada] = useState(completado)
+    const parrafoRef = useRef<HTMLParagraphElement>(null)
 
+    const filtro = useStorage(state => state.filtro)
+    const orden = useStorage(state => state.orden)
+    const tareas = useStorage(state => state.tareas)
     const completarTarea = useStorage(state => state.completarTarea)
     const eliminarTarea = useStorage(state => state.eliminarTarea)
     const setIdTareaEditar = useStorage(state => state.setIdTareaEditar)
@@ -14,12 +26,22 @@ const Tarea = ({ id, contenido, completado }: TareaType) => {
 
     useEffect(() => {
         completarTarea(id, tareaCompletada)
+
+        const datos: DatosType = {
+            filtro,
+            orden,
+            tareas,
+            setTareasVisibles
+        }
+
+        filtrarTareas(datos)
     }, [tareaCompletada])
 
     // Formatear texto de las tareas
     useEffect(() => {
-        const parrafo = document.querySelector(`#${id}`)
-        if (parrafo !== null) { parrafo.innerHTML = contenido.replace(/\n/g, '<br>').trim() }
+        if (parrafoRef.current !== null) {
+            parrafoRef.current.innerHTML = contenido.replace(/\n/g, '<br>').trim()
+        }
     }, [contenido])
 
     const handleEditar = () => {
@@ -38,7 +60,7 @@ const Tarea = ({ id, contenido, completado }: TareaType) => {
                 onClick={() => { setTareaCompletada(!tareaCompletada) }}
             > {tareaCompletada ? <BiCheck/> : <BiCheckbox/> } </button>
 
-            <p id={id} className={`tarea titulo ${tareaCompletada ? 'subdrayado' : ''}`}></p>
+            <p ref={parrafoRef} className={`tarea titulo ${tareaCompletada ? 'subdrayado' : ''}`}>{contenido}</p>
 
             <button
                 type="button"

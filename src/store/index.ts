@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { type TareaContenido, type Tarea, type TareaId } from '../types'
+import { METODOS } from '../data'
 
 interface StorageTipos {
     esTemaOscuro: boolean
@@ -18,6 +19,11 @@ interface StorageTipos {
     eliminarTarea: (id: TareaId) => void
     completarTarea: (id: TareaId, completado: boolean) => void
     editarTarea: (id: TareaId, contenido: TareaContenido) => void
+
+    filtro: string
+    setFiltro: (nuevoFiltro: string) => void
+    orden: string
+    setOrden: (nuevoOrden: string) => void
 }
 
 export const useStorage = create<StorageTipos>()(persist(
@@ -64,7 +70,11 @@ export const useStorage = create<StorageTipos>()(persist(
                     return tarea.id === id ? { ...tarea, contenido } : tarea
                 })
             }))
-        }
+        },
+        filtro: METODOS.filtrar.verTodos,
+        orden: METODOS.ordenar.recientes,
+        setFiltro: (nuevoFiltro) => { set({ filtro: nuevoFiltro }) },
+        setOrden: (nuevoOrden) => { set({ orden: nuevoOrden }) }
     }),
 
     {

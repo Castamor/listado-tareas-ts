@@ -1,34 +1,51 @@
 import { BiFilterAlt, BiSort, BiCheck, BiCheckbox, BiCheckSquare, BiSortDown, BiSortUp } from 'react-icons/bi'
+import { type Vacio as VacioType } from '../types'
+
+export const VACIO: VacioType = ''
+
+export const METODOS = {
+    filtrar: {
+        string: 'Filtrar',
+        verTodos: 'Todos',
+        completados: 'Completados',
+        pendientes: 'Pendientes'
+    },
+    ordenar: {
+        string: 'Ordenar',
+        recientes: 'Recientes',
+        antiguos: 'Antiguos'
+    }
+}
 
 export const SELECTS = [
     {
-        titulo: 'Filtrar',
+        titulo: METODOS.filtrar.string,
         Icono: BiFilterAlt,
         opciones: [
             {
-                titulo: 'Todos',
+                titulo: METODOS.filtrar.verTodos,
                 Icono: BiCheckSquare
             },
             {
-                titulo: 'Completados',
+                titulo: METODOS.filtrar.completados,
                 Icono: BiCheck
             },
             {
-                titulo: 'Pendientes',
+                titulo: METODOS.filtrar.pendientes,
                 Icono: BiCheckbox
             }
         ]
     },
     {
-        titulo: 'Ordenar',
+        titulo: METODOS.ordenar.string,
         Icono: BiSort,
         opciones: [
             {
-                titulo: 'Recientes',
+                titulo: METODOS.ordenar.recientes,
                 Icono: BiSortDown
             },
             {
-                titulo: 'Antiguos',
+                titulo: METODOS.ordenar.antiguos,
                 Icono: BiSortUp
             }
         ]

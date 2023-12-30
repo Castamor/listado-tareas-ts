@@ -3,7 +3,7 @@ import { BiPlus, BiCheck, BiInfoCircle } from 'react-icons/bi'
 import { useStorage } from '../store'
 import { type Tarea } from '../types'
 import { generarId } from '../helpers'
-import { VACIO } from '../constants'
+import { VACIO } from '../data'
 
 const Formulario = () => {
     const [error, setError] = useState(false)

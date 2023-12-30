@@ -264,7 +264,8 @@ li.flex span {
 }
 
 .select.active .select-btn {
-    background-color: var(--fondoTareaHover);
+    color: var(--primario);
+    background-color: var(--fondoCartaHover);
 }
 
 .select-btn.selected {
@@ -291,7 +292,7 @@ li.flex span {
 }
 
 .select-opciones li {
-    padding: .5rem 1rem;
+    padding: .75rem 1rem;
     list-style: none;
     border-radius: .5rem;
     cursor: pointer;
