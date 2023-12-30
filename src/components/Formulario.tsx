@@ -21,7 +21,7 @@ const Formulario = () => {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if (contenidoInput === VACIO) {
+        if (contenidoInput.trim() === VACIO) {
             setError(true)
             setTimeout(() => { setError(false) }, 2500)
             return
@@ -65,6 +65,7 @@ const Formulario = () => {
 
     return (
         <form onSubmit={handleSubmit}>
+
             <label htmlFor="titulo" className='subtitulo'>
                 {editando ? 'Cambiar contenido de la tarea...' : '¿Qué tareas tienes hoy?'}
             </label>

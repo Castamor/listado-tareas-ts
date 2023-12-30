@@ -2,17 +2,30 @@
 :root {
     --fuente: 'Outfit', sans-serif;
     --primario: #3b82f6;
+    --rojo: #c50000;
+
+    color-scheme: dark;
     --texto: #cbd5e1;
+    --textoBtnSelect: var(--primario);
     --textoSecundario: #515457;
     --fondoPagina: #00081b;
-    
     --fondoCarta: #171a1f;
-    --fondoCartaHover: #192533;
     --bordeCarta: #1e293b;
+    --btnActive: #192533;
     --fondoTarea: #2e3035;
     --fondoTareaHover: #24262d;
-    --rojo: #c50000;
-    color-scheme: dark;
+}
+
+body.light {
+    --texto: #141414;
+    --textoBtnSelect: #ddecff;
+    --textoSecundario: #8d8d8d;
+    --fondoPagina: #dce8ff;
+    --fondoCarta: #f1f7ff;
+    --bordeCarta: #bdd6ff;
+    --btnActive: #89c0ff;
+    --fondoTarea: #e6edff;
+    --fondoTareaHover: #c7d7ff;
 }
 
 *, *::before, *::after {
@@ -35,16 +48,6 @@ body {
     color-scheme: dark;
 }
 
-body.light {
-    --texto: #141414;
-    --fondoPagina: #dce8ff;
-    --fondoCarta: #f1f7ff;
-    --bordeCarta: #bdd6ff;
-    --fondoTarea: #e6edff;
-    --fondoTareaHover: #c7d7ff;
-    color-scheme: light;
-}
-
 button, input {
     font-family: var(--fuente);
     border: none;
@@ -53,6 +56,7 @@ button, input {
 input[type='checkbox'] {display: none;}
 
 .tema {
+    cursor: pointer;
     position: absolute;
     font-size: 2rem;
     top: 0;
@@ -271,13 +275,8 @@ li.flex span {
 }
 
 .select.active .select-btn {
-    color: var(--primario);
-    background-color: var(--fondoCartaHover);
-}
-
-.select-btn.selected {
-    font-weight: 400;
-    color: var(--primario);
+    background-color: var(--btnActive);
+    color: var(--textoBtnSelect);
 }
 
 .select-opciones {

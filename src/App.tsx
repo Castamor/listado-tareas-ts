@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Formulario from './components/Formulario'
 import Tareas from './components/Tareas'
 import Titulo from './components/Titulo'
@@ -5,10 +6,15 @@ import './index.css'
 import { useStorage } from './store'
 
 function App () {
-    const borrarTareas = useStorage(state => state.borrarTareas)
     const tareas = useStorage(state => state.tareas)
+    const esTemaOscuro = useStorage(state => state.esTemaOscuro)
 
     const hayTareas = tareas.length > 0
+
+    useEffect(() => {
+        const body = document.body
+        !esTemaOscuro ? body.classList.toggle('light') : body.classList.remove('light')
+    }, [esTemaOscuro])
 
     return (
         <>
@@ -17,14 +23,6 @@ function App () {
                 <Formulario />
                 {hayTareas && <Tareas />}
             </div>
-
-            <button className='' type='button' onClick={() => {
-                const ta = document.querySelector('textarea')
-                if (ta !== null) {
-                    ta.value = ''
-                }
-                borrarTareas()
-            }}>Borrar todas las tareas</button>
         </>
     )
 }
