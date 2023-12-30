@@ -26,6 +26,7 @@ body.light {
     --btnActive: #89c0ff;
     --fondoTarea: #e6edff;
     --fondoTareaHover: #c7d7ff;
+    color-scheme: light;
 }
 
 *, *::before, *::after {
@@ -164,7 +165,6 @@ input[type='checkbox'] {display: none;}
     min-width: 4rem;
     color: var(--primario);
     background-color: transparent;
-    outline: none;
     cursor: pointer;
 
     display: grid;
@@ -216,7 +216,7 @@ input[type='checkbox'] {display: none;}
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    gap: 1rem;
+    gap: .75rem;
 }
 
 .contenido header {
@@ -323,4 +323,14 @@ li.flex span {
 
 .subdrayado {
     text-decoration: line-through;
+}
+
+.radius-izq {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.radius-der {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }

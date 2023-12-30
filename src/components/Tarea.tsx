@@ -55,7 +55,7 @@ const Tarea = ({ tarea, setTareasVisibles }: Props) => {
         <li className='plantilla'>
             <button
                 type='button'
-                className='boton check'
+                className='boton check radius-izq'
                 title='Completar Tarea'
                 onClick={() => { setTareaCompletada(!tareaCompletada) }}
             > {tareaCompletada ? <BiCheck/> : <BiCheckbox/> } </button>
@@ -71,7 +71,7 @@ const Tarea = ({ tarea, setTareasVisibles }: Props) => {
 
             <button
                 type='button'
-                className='boton basura hover'
+                className='boton basura hover radius-der'
                 title='Eliminar Tarea'
                 onClick={() => { eliminarTarea(id) }}
             > <BiTrashAlt/> </button>
