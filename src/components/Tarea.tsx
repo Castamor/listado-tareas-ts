@@ -71,7 +71,7 @@ const Tarea = ({ tarea, setTareasVisibles }: Props) => {
 
             <button
                 type='button'
-                className='boton basura hover radius-der'
+                className='boton basura radius-der'
                 title='Eliminar Tarea'
                 onClick={() => { eliminarTarea(id) }}
             > <BiTrashAlt/> </button>

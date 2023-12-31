@@ -68,7 +68,7 @@ const Formulario = () => {
 
             <label htmlFor="titulo" className='subtitulo flex'>
                 {editando ? 'Cambiar contenido de la tarea...' : '¿Qué tareas tienes hoy?'}
-                <span title='Si utilizas teclado puedes presionar <Ctrl + Enter> para agregar la tarea directamente'><BiInfoCircle/></span>
+                <span><BiInfoCircle/></span>
             </label>
             <div className="plantilla input">
                 <textarea
@@ -83,7 +83,7 @@ const Formulario = () => {
                 <button
                     type="submit"
                     title={editando ? 'Actualizar Tarea' : 'Agregar Tarea'}
-                    className="boton plus hover apuntar radius-der"
+                    className="boton plus apuntar radius-der"
                 >
                     {editando ? <BiCheck /> : <BiPlus/>}
                 </button>
