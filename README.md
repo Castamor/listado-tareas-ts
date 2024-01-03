@@ -1,30 +1,40 @@
-# React + TypeScript + Vite
+# Gestor de Tareas: Aplicación TODO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta aplicación de gestión de tareas ha sido desarrollada con TypeScript y React, diseñada para facilitar la organización y administración eficiente de tus quehaceres diarios. Además, hace uso de `localStorage` para almacenar las tareas localmente.
 
-Currently, two official plugins are available:
+## Aprendizajes Destacados
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este proyecto ha representado un desafío enriquecedor en varios aspectos:
 
-## Expanding the ESLint configuration
+- **Typescript:** Esta ha sido mi primera inmersión en el mundo de TypeScript. A lo largo del proyecto, he explorado sus fundamentos, comprendido su funcionamiento y apreciado las ventajas que ofrece para mejorar la experiencia de desarrollo y prevenir errores de tipado.
+  
+- **Configuración de Proyecto:** Configurar adecuadamente la relación entre TypeScript y ESLint fue un desafío, pero logré establecer una configuración sólida y funcional para ambos.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Zustand:** He optado por implementar el manejador de estado [Zustand](https://zustand-demo.pmnd.rs/), una alternativa a Context de React que, en mi experiencia, ofrece una simplicidad y facilidad de uso que encuentro especialmente atractiva.
 
-- Configure the top-level `parserOptions` property like this:
+## Funcionalidades Clave
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **Agregar Tareas:** Permite la inclusión de tareas de múltiples líneas mediante el atajo *<Ctrl + Enter>* para una inserción inmediata.
+  
+- **Listado de Tareas:** Visualización clara y ordenada del contenido de cada tarea.
+  
+- **Edición de Tareas:** Facilita la modificación del contenido de una tarea sin necesidad de eliminarla y recrearla.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Sistema de Filtros:** Categorización de tareas en *Todas*, *Completadas* y *Pendientes* para una mejor organización.
+  
+- **Ordenamiento de Tareas:** Permite ordenarlas por más *Recientes* o más *Antiguas*.
+  
+- **Modo Claro/Oscuro:** Ofrece la opción de cambiar entre temas de visualización para adaptarse a diferentes preferencias o condiciones de iluminación.
+
+![Captura de Pantalla del Proyecto](https://github.com/Castamor/listado-tareas-ts/assets/141193208/f557c9a1-3e33-4f87-9a06-ea277f672ea8)
+
+## Tecnologías Utilizadas
+
+- React
+- TypeScript
+- Zustand
+- Vite
+- ESLint
+- Netlify
+
+###### README.md - versión 1 (Creación)
