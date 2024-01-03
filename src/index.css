@@ -132,8 +132,8 @@ input[type='checkbox'] {display: none;}
     position: absolute;
     z-index: 100;
     content: 'Si usas teclado puedes presionar <Ctrl + Enter> para agregar la tarea directamente';
-    bottom: -5rem;
-    left: -13.75rem;
+    top: -5rem;
+    left: -14.25rem;
     box-shadow: rgba(255, 255, 255, 0.025) 0 0 2.5rem;
     min-width: 32.5rem;
     color: var(--texto);
